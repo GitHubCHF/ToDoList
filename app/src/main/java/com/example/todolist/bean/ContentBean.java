@@ -3,12 +3,21 @@ package com.example.todolist.bean;
 import java.io.Serializable;
 
 public class ContentBean implements Serializable {
+    private int id;
     private String title;
     private String content;
     private int type; // 0未完成 1已完成
     private long finish_time;
     private long create_time;
     private long update_time;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

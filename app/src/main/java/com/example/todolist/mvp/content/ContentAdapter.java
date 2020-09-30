@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todolist.R;
 import com.example.todolist.bean.ContentBean;
+import com.example.todolist.utils.DBHelper;
 
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentH
 
     @Override
     public void onBindViewHolder(@NonNull ContentAdapter.ContentHolder holder, int position) {
-        ContentBean contentBean = data.get(position);
+        final ContentBean contentBean = data.get(position);
         holder.content.setText(contentBean.getContent());
 
         switch (contentBean.getType()) {
@@ -52,6 +53,13 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentH
                 holder.contentLabel.setTextColor(context.getResources().getColor(R.color.color_green));
             }
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DBHelper().deleteById(contentBean.getId());
+                //目前只删除数据库
+            }
+        });
 
     }
 

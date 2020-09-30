@@ -42,6 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor result = db.rawQuery(sql, null);
         for (result.moveToFirst(); !result.isAfterLast(); result.moveToNext()) {
             ContentBean contentBean = new ContentBean();
+            contentBean.setId(result.getInt(result.getColumnIndex("id")));
             contentBean.setTitle(result.getString(result.getColumnIndex("title")));
             contentBean.setContent(result.getString(result.getColumnIndex("content")));
             contentBean.setType(result.getInt(result.getColumnIndex("type")));
@@ -73,17 +74,19 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteById(String id) {
+    public void deleteById(int id) {
         SQLiteDatabase db = getWritableDatabase();
-        String sql = "DELETE FROM content_info where id = '" + id + "'";
+        String sql = "DELETE FROM content_info where id = "+id;
         db.execSQL(sql);
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "create table content_info(title varchar(666)," +
-                "content varchar(999)," +
+        String sql = "create table content_info(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "title varchar(666)," +
+                "content varchar(9999)," +
                 "type varchar(4)," +
                 "finish_time int(13)," +
                 "create_time int(13)," +

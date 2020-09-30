@@ -19,8 +19,11 @@ public class MainActivity extends AppCompatActivity {
 
         ContentBean contentBean = new ContentBean();
         contentBean.setType(1);
-        contentBean.setTitle("435475867643655");
+        contentBean.setTitle("1233554");
         contentBean.setContent("153264576872141241241298111");
+        contentBean.setFinish_time(12432463413L);
+        contentBean.setCreate_time(132435465L);
+        contentBean.setUpdate_time(15327877L);
         new DBHelper().addData(contentBean);
 
     }
