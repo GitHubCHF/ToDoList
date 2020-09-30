@@ -67,6 +67,17 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void deleteTitle(String title) {
+        SQLiteDatabase db = getWritableDatabase();
+        String sql = "DELETE FROM content_info where title = '" + title + "'";
+        db.execSQL(sql);
+    }
+    public void deleteContent(String content) {
+        SQLiteDatabase db = getWritableDatabase();
+        String sql = "DELETE FROM content_info where content = '" + content + "'";
+        db.execSQL(sql);
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "create table content_info(title varchar(666)," +
