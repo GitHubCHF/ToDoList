@@ -42,6 +42,9 @@ public class DBHelper extends SQLiteOpenHelper {
             contentBean.setTitle(result.getString(result.getColumnIndex("title")));
             contentBean.setContent(result.getString(result.getColumnIndex("content")));
             contentBean.setType(result.getInt(result.getColumnIndex("type")));
+            contentBean.setFinish_time(result.getInt(result.getColumnIndex("finish_time")));
+            contentBean.setCreate_time(result.getInt(result.getColumnIndex("create_time")));
+            contentBean.setUpdate_time(result.getInt(result.getColumnIndex("update_time")));
             contentBeanList.add(contentBean);
         }
         db.close();
@@ -67,22 +70,21 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteTitle(String title) {
+    public void deleteById(String id) {
         SQLiteDatabase db = getWritableDatabase();
-        String sql = "DELETE FROM content_info where title = '" + title + "'";
+        String sql = "DELETE FROM content_info where id = '" + id + "'";
         db.execSQL(sql);
     }
-    public void deleteContent(String content) {
-        SQLiteDatabase db = getWritableDatabase();
-        String sql = "DELETE FROM content_info where content = '" + content + "'";
-        db.execSQL(sql);
-    }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "create table content_info(title varchar(666)," +
                 "content varchar(999)," +
-                "type varchar(4)" +
+                "type varchar(4)," +
+                "finish_time int(13)," +
+                "create_time int(13)," +
+                "update_time int(13)" +
                 ")";
         db.execSQL(sql);
     }

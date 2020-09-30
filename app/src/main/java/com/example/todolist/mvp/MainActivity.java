@@ -19,8 +19,9 @@ public class MainActivity extends AppCompatActivity {
 
         ContentBean contentBean = new ContentBean();
         contentBean.setType(1);
-        contentBean.setTitle("435475867643655" + new Random().toString());
-        contentBean.setContent("1532645768798");
+        contentBean.setTitle("435475867643655");
+        contentBean.setContent("153264576872141241241298111");
         new DBHelper().addData(contentBean);
+
     }
 }
