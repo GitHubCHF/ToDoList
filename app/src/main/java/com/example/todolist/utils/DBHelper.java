@@ -34,6 +34,21 @@ public class DBHelper extends SQLiteOpenHelper {
         return status != -1;
     }
 
+
+    public boolean updateData(ContentBean contentBean) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("title", contentBean.getTitle());
+        values.put("content", contentBean.getContent());
+        values.put("type", contentBean.getType());
+        values.put("finish_time", contentBean.getFinish_time());
+        values.put("create_time", contentBean.getCreate_time());
+        values.put("update_time", contentBean.getUpdate_time());
+        long status = db.update("content_info", values, "id=?",new String[] {String.valueOf(contentBean.getId())});
+        db.close();
+        return status != -1;
+    }
+
     @SuppressLint("Recycle")
     public List<ContentBean> getContentByTitle(String title) {
         List<ContentBean> contentBeanList = new ArrayList<>();

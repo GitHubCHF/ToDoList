@@ -56,7 +56,9 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentH
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DBHelper().deleteById(contentBean.getId());
+//                new DBHelper().deleteById(contentBean.getId());
+                contentBean.setContent("hahaha");
+                new DBHelper().updateData(contentBean);
                 //目前只删除数据库
             }
         });
